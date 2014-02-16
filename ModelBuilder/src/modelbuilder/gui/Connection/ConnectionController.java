@@ -32,11 +32,11 @@ public class ConnectionController implements ActionListener {
         createConnection();
     }
 
-    private void createConnection(){
+    private void createConnection() {
         String user;
         String password;
         String url;
-        
+
         if (isValid()) {
             clearErrorLabels();
 
@@ -50,13 +50,16 @@ public class ConnectionController implements ActionListener {
                 view.nextPanel();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "SQL Connection Error", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException npEX) {
+                JOptionPane.showMessageDialog(new JFrame(), "Not the correct DB Type", "SQL Connection Error", JOptionPane.ERROR_MESSAGE);
             }
-
         } else {
             putErrorMessage();
         }
+        
+                
     }
-    
+
     private boolean isValid() {
         String user = view.getUserText();
         String password = view.getPasswordText();
@@ -83,7 +86,7 @@ public class ConnectionController implements ActionListener {
                 break;
         }
     }
-    
+
     private void putErrorMessage() {
         String user = view.getUserText();
         String password = view.getPasswordText();
@@ -117,8 +120,8 @@ public class ConnectionController implements ActionListener {
     private void clearErrorLabels() {
         putErrorMessage(); // since only called when is valid should auto clear error labels!
     }
-    
-    public void setDefaultDBType(){
+
+    public void setDefaultDBType() {
         view.setDefaultDBType(ctrl.getDefaultDBType());
     }
 }
