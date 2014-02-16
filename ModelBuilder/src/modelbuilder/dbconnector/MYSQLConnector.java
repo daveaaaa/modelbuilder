@@ -43,8 +43,8 @@ public class MYSQLConnector extends DBConnector {
         try {
             table = generateTable("Call " + procedureName + ";", table);
         } finally {
-            return table;
         }
+        return table;
     }
 
     /***
@@ -56,12 +56,11 @@ public class MYSQLConnector extends DBConnector {
      */
     @Override
     public Table executeStatement(String statementString, Table table) throws SQLException {
-
         try {
             table = generateTable(statementString + ";", table);
         } finally {
-            return table;
         }
+        return table;
     }
 
     @Override
@@ -82,7 +81,6 @@ public class MYSQLConnector extends DBConnector {
 
             results.toArray(returnArray);
 
-            return returnArray;
             /*
             rsmd = resultSet.getMetaData();
             
@@ -109,6 +107,8 @@ public class MYSQLConnector extends DBConnector {
             }
             cleanUp();
         }
+        
+        return returnArray;
     }
 
     @Override
